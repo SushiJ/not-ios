@@ -74,8 +74,6 @@ fun ComposeQuadrantApp() {
     }
 }
 
-
-
 @Composable
 private fun ComposableInfoCard(
     title: String,
