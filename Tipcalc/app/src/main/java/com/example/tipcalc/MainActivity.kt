@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -36,6 +38,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.modifier.modifierLocalProvider
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -60,6 +63,7 @@ class MainActivity : ComponentActivity() {
 fun EditNumberField(
     value: String,
     @StringRes label: Int,
+    @DrawableRes leadingIcon: Int,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     keyboardOptions: KeyboardOptions,
@@ -67,6 +71,7 @@ fun EditNumberField(
     TextField(
         value = value,
         label = { Text(stringResource(label)) },
+        leadingIcon = { Icon(painter = painterResource(id = leadingIcon), null) },
         onValueChange = onValueChange,
         keyboardOptions = keyboardOptions,
         modifier = modifier,
@@ -121,6 +126,7 @@ fun TipCalculator() {
             amountInput,
             onValueChange = { amountInput = it },
             label = R.string.bill_amount,
+            leadingIcon = R.drawable.money,
             modifier = Modifier
                 .padding(bottom = 32.dp)
                 .fillMaxWidth(),
@@ -132,6 +138,7 @@ fun TipCalculator() {
         EditNumberField(
             value = tipInput,
             label = R.string.how_was_the_service,
+            leadingIcon = R.drawable.percent,
             onValueChange = { tipInput = it } ,
             modifier = Modifier
                 .padding(bottom = 32.dp)
