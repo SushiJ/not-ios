@@ -47,7 +47,7 @@ import com.example.cupcake.data.DataSource
 import com.example.cupcake.ui.OrderSummaryScreen
 import com.example.cupcake.ui.SelectOptionScreen
 
-enum class CupcakeScreen() {
+enum class CupcakeScreen {
     Start, Flavor, Pickup, Summary
 }
 
@@ -160,7 +160,7 @@ private fun shareOrder(context: Context, subject: String, summary: String) {
     val intent = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"
         putExtra(Intent.EXTRA_SUBJECT, subject)
-        putExtra(Intent.EXTRA_SUBJECT, summary)
+        putExtra(Intent.EXTRA_TEXT, summary)
     }
     context.startActivity(
         Intent.createChooser(
